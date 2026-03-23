@@ -268,11 +268,21 @@ img { max-width: 100%; display: block; }
 .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 .gold-dot { background: var(--gold); }
 
-/* Hero visual — island card */
+/* Hero visual — logo image */
 .hero-visual {
   flex: 0 0 auto;
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-logo-img {
+  width: 520px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 48px rgba(232,160,32,0.30));
 }
 .island-card {
   width: 280px;
@@ -951,7 +961,7 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 768px) {
   .hero { flex-direction: column; padding: 60px 28px; min-height: auto; gap: 40px; }
-  .hero-visual { display: none; }
+  .hero-logo-img { width: 280px; }
   .navbar { padding: 0 20px; }
   .nav-links { display: none; }
   .nav-cta { display: none; }

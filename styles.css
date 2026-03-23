@@ -188,43 +188,42 @@ img { max-width: 100%; display: block; }
 }
 
 /* ════════════════════════════════
-   HERO
+   HERO — IMAGE SEULE PLEIN ÉCRAN
    ════════════════════════════════ */
 .hero {
-  position: relative;
-  min-height: 100vh;
+  width: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
-  gap: 0;
-  padding: 100px 60px 80px 60px;
+  justify-content: center;
   background: var(--white);
   overflow: hidden;
-  border-bottom: 2px solid var(--border);
 }
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-.hero-pattern {
+.hero-logo-img {
   width: 100%;
   height: 100%;
-  position: absolute;
-  inset: 0;
+  object-fit: contain;
+  display: block;
 }
 
-.hero-content { flex: 0 0 50%; max-width: 50%; position: relative; z-index: 2; padding-right: 40px; }
+/* ════════════════════════════════
+   HERO INTRO — TITRAGES SOUS L'IMAGE
+   ════════════════════════════════ */
+.hero-intro {
+  background: var(--white);
+  padding: 80px 60px 72px;
+  border-bottom: 2px solid var(--border);
+}
 
 .hero-title {
   font-family: var(--font-head);
   font-weight: 900;
-  font-size: clamp(3.5rem, 7.5vw, 7.5rem);
-  line-height: 0.9;
+  font-size: clamp(4rem, 9vw, 9rem);
+  line-height: 0.88;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: var(--text);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .hero-sub {
@@ -267,27 +266,6 @@ img { max-width: 100%; display: block; }
 }
 .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 .gold-dot { background: var(--gold); }
-
-/* Hero visual — logo image (moitié droite strictement) */
-.hero-visual {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-.hero-logo-img {
-  width: 88%;
-  max-width: 640px;
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 4px 40px rgba(232,160,32,0.18));
-}
 .island-card {
   width: 280px;
   background: var(--dark2);
@@ -964,10 +942,8 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 768px) {
-  .hero { flex-direction: column; padding: 80px 28px 60px; min-height: auto; gap: 0; }
-  .hero-visual { position: relative; left: auto; right: auto; top: auto; bottom: auto; width: 100%; max-width: 340px; margin: 36px auto 0; height: auto; }
-  .hero-logo-img { width: 100%; }
-  .hero-content { flex: 0 0 auto; max-width: 100%; padding-right: 0; }
+  .hero { height: 60vw; min-height: 300px; }
+  .hero-intro { padding: 48px 28px 40px; }
   .navbar { padding: 0 20px; }
   .nav-links { display: none; }
   .nav-cta { display: none; }

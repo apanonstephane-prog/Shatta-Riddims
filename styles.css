@@ -214,12 +214,12 @@ img { max-width: 100%; display: block; }
   inset: 0;
 }
 
-.hero-content { flex: 0 0 52%; max-width: 640px; position: relative; z-index: 2; }
+.hero-content { flex: 0 0 50%; max-width: 50%; position: relative; z-index: 2; padding-right: 40px; }
 
 .hero-title {
   font-family: var(--font-head);
   font-weight: 900;
-  font-size: clamp(4.5rem, 10vw, 8.5rem);
+  font-size: clamp(3.5rem, 7.5vw, 7.5rem);
   line-height: 0.9;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -268,22 +268,25 @@ img { max-width: 100%; display: block; }
 .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 .gold-dot { background: var(--gold); }
 
-/* Hero visual — logo image (positionnement absolu plein-droite) */
+/* Hero visual — logo image (moitié droite strictement) */
 .hero-visual {
   position: absolute;
-  right: -20px;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
   z-index: 1;
-  width: 52vw;
-  max-width: 760px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   pointer-events: none;
 }
 .hero-logo-img {
-  width: 100%;
+  width: 88%;
+  max-width: 640px;
   height: auto;
   display: block;
-  filter: drop-shadow(0 0 60px rgba(232,160,32,0.20));
+  filter: drop-shadow(0 4px 40px rgba(232,160,32,0.18));
 }
 .island-card {
   width: 280px;
@@ -962,8 +965,9 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 768px) {
   .hero { flex-direction: column; padding: 80px 28px 60px; min-height: auto; gap: 0; }
-  .hero-visual { position: relative; right: auto; top: auto; transform: none; width: 100%; max-width: 340px; margin: 32px auto 0; }
-  .hero-content { flex: 0 0 auto; max-width: 100%; }
+  .hero-visual { position: relative; left: auto; right: auto; top: auto; bottom: auto; width: 100%; max-width: 340px; margin: 36px auto 0; height: auto; }
+  .hero-logo-img { width: 100%; }
+  .hero-content { flex: 0 0 auto; max-width: 100%; padding-right: 0; }
   .navbar { padding: 0 20px; }
   .nav-links { display: none; }
   .nav-cta { display: none; }

@@ -192,11 +192,11 @@ img { max-width: 100%; display: block; }
    ════════════════════════════════ */
 .hero {
   position: relative;
-  min-height: 88vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  gap: 60px;
-  padding: 80px 60px;
+  gap: 0;
+  padding: 100px 60px 80px 60px;
   background: var(--white);
   overflow: hidden;
   border-bottom: 2px solid var(--border);
@@ -214,7 +214,7 @@ img { max-width: 100%; display: block; }
   inset: 0;
 }
 
-.hero-content { flex: 1; max-width: 620px; position: relative; z-index: 1; }
+.hero-content { flex: 0 0 52%; max-width: 640px; position: relative; z-index: 2; }
 
 .hero-title {
   font-family: var(--font-head);
@@ -268,21 +268,22 @@ img { max-width: 100%; display: block; }
 .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 .gold-dot { background: var(--gold); }
 
-/* Hero visual — logo image */
+/* Hero visual — logo image (positionnement absolu plein-droite) */
 .hero-visual {
-  flex: 0 0 auto;
-  position: relative;
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 52vw;
+  max-width: 760px;
+  pointer-events: none;
 }
 .hero-logo-img {
-  width: 520px;
-  max-width: 100%;
+  width: 100%;
   height: auto;
   display: block;
-  filter: drop-shadow(0 8px 48px rgba(232,160,32,0.30));
+  filter: drop-shadow(0 0 60px rgba(232,160,32,0.20));
 }
 .island-card {
   width: 280px;
@@ -960,8 +961,9 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 768px) {
-  .hero { flex-direction: column; padding: 60px 28px; min-height: auto; gap: 40px; }
-  .hero-logo-img { width: 280px; }
+  .hero { flex-direction: column; padding: 80px 28px 60px; min-height: auto; gap: 0; }
+  .hero-visual { position: relative; right: auto; top: auto; transform: none; width: 100%; max-width: 340px; margin: 32px auto 0; }
+  .hero-content { flex: 0 0 auto; max-width: 100%; }
   .navbar { padding: 0 20px; }
   .nav-links { display: none; }
   .nav-cta { display: none; }

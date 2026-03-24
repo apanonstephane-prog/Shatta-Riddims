@@ -46,7 +46,7 @@ function loadRiddim(index) {
 
   if (playerTitle)  playerTitle.textContent  = r.title;
   if (playerArtist) playerArtist.textContent = r.artist;
-  if (playerThumb)  playerThumb.className    = `player-thumb ${r.coverClass}`;
+  if (playerThumb)  playerThumb.className    = `dock-thumb ${r.coverClass}`;
   if (timeTotal)    timeTotal.textContent    = r.duration;
   if (timeCurrent)  timeCurrent.textContent  = '0:00';
   if (progressFill) progressFill.style.width = '0%';
@@ -74,7 +74,7 @@ function startProgress() {
 
 function play() {
   state.playing = true;
-  if (playPauseBtn) playPauseBtn.textContent = '⏸';
+  if (playPauseBtn) playPauseBtn.innerHTML = '&#9646;&#9646;';
   updateAllPlayBtns();
   startProgress();
 }
@@ -82,7 +82,7 @@ function play() {
 function pause() {
   state.playing = false;
   clearInterval(state.timer);
-  if (playPauseBtn) playPauseBtn.textContent = '▶';
+  if (playPauseBtn) playPauseBtn.innerHTML = '&#9654;';
   updateAllPlayBtns();
 }
 
@@ -154,12 +154,11 @@ document.querySelectorAll('.riddim-card').forEach((card) => {
   });
 });
 
-/* ─── Filtres ─── */
-document.querySelectorAll('.filter-btn').forEach((btn) => {
+/* ─── Filtres (filter-pill) ─── */
+document.querySelectorAll('.filter-pill').forEach((btn) => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-
     const filter = btn.dataset.filter;
     document.querySelectorAll('.riddim-card').forEach((card) => {
       const genre = card.dataset.genre;
@@ -204,6 +203,38 @@ const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar?.classList.toggle('scrolled', window.scrollY > 10);
 }, { passive: true });
+
+/* ─── Menu burger ─── */
+const burger     = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+burger?.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  burger.setAttribute('aria-expanded', String(isOpen));
+  mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+
+document.querySelectorAll('.mm-link').forEach((link) => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    burger?.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  });
+});
+
+/* ─── Scroll reveal ─── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 /* ─── Init ─── */
 loadRiddim(0);
